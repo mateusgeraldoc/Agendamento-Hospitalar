@@ -1,0 +1,30 @@
+CREATE DATABASE hospital;
+
+CREATE TABLE Acesso(
+    Cod_acesso INT Primary key auto_increment,
+    Chave_acesso VARCHAR(10)
+);
+
+CREATE TABLE Usuarios(
+    Cod_usuario INT Primary key auto_increment,
+    Nome_usuario VARCHAR(30),
+    Usuario VARCHAR(30),
+    Senha VARCHAR(30)
+);
+
+CREATE TABLE Pacientes(
+    Cod_paciente INT Primary key auto_increment,
+    Cpf VARCHAR(15),
+    Nome VARCHAR(30),
+    Idade INT,
+    Telefone VARCHAR(30),
+    Cep VARCHAR(15),
+    Rua VARCHAR(30),
+    Numero INT,
+    Bairro VARCHAR(30)
+);
+
+CREATE TABLE Especialidade(
+    Cod_paciente INT Primary key auto_increment,
+    Nome_especialidade VARCHAR(30)
+);
