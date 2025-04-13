@@ -17,18 +17,18 @@
         </form>
         <?php
         include_once("../conexao.php");
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $chave = $_POST['senha'];
-
             $consulta = mysqli_query($conexao, "SELECT * FROM Acesso");
             $resultado = mysqli_fetch_array($consulta);
+            $senha = $resultado['Chave_acesso'];
 
-            if($resultado['senha'] == $chave){
+            if($senha == $chave){
                 header("Location: cadastro_colaborador.php");
                 exit();
             } else {
-                echo "<p>Chave de Acesso Incorreta</p>";
+                header("Location: adm.php");
+                exit();
             } 
         }
         ?>
