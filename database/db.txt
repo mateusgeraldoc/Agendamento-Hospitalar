@@ -28,3 +28,9 @@ CREATE TABLE Especialidade(
     Cod_paciente INT Primary key auto_increment,
     Nome_especialidade VARCHAR(30)
 );
+
+INSERT INTO Usuario
+VALUES(1, 'User', 'User', 123);
+
+INSERT INTO Acesso
+VALUES (1, '12345');
