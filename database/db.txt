@@ -21,7 +21,8 @@ CREATE TABLE Pacientes(
     Cep VARCHAR(15),
     Rua VARCHAR(30),
     Numero INT,
-    Bairro VARCHAR(30)
+    Bairro VARCHAR(30),
+    Cidade VARCHAR(30)
 );
 
 CREATE TABLE Especialidade(

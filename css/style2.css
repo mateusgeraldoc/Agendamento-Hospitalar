@@ -275,3 +275,17 @@ h2 {
 form{
     width: 100%;
 }
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.half-width {
+    width: 48%; /* Cada campo ocupa metade da largura com um pequeno espaçamento */
+}
+
+.input-container input {
+    width: 100%; /* Garante que o input ocupe toda a largura do container */
+}
