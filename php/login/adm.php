@@ -16,6 +16,7 @@
             <button class="submit-button" type="submit">CONCLUIR</button>
         </form>
         <?php
+        session_start();
         include_once("../conexao.php");
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $chave = $_POST['senha'];

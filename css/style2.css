@@ -16,9 +16,13 @@
 body{
     background-color: #3D88C6;
     min-height: 100vh;
-    display: flex; 
     justify-content: center; 
     align-items: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .container{
@@ -183,7 +187,9 @@ option{
     align-items: center;
     border-bottom: 1px solid black;
     background-color: #0365B7;
-
+    z-index: 1000;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .navbar a {
@@ -199,7 +205,61 @@ option{
 .navbar img {
     height: 40px;
     border: none;
-    margin-right: 30px;
+}
+
+.main {
+    flex: 1;
+    margin-top: 100px; /* Espaço para compensar a navbar fixa */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.container2 {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: #0365B7;
+    width: 45%; /* Ajusta a largura para caber lado a lado */
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0);
+    margin: 10px; /* Espaçamento entre os containers */
+    color: white;
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px; /* Espaço entre os containers e o botão */
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Centraliza o botão */
+    width: 20%;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    background-color: rgb(233, 233, 233);
 }
 
 .main {
@@ -210,4 +270,8 @@ option{
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+}
+
+form{
+    width: 100%;
 }
