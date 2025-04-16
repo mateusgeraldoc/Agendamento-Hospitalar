@@ -175,21 +175,45 @@ option{
     margin-top: 10px;
 }
 
+.input-search{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    margin: 0 0 5% 0%;
+}
 
-.navbar {
+.input-search input{
+    width: 100%; 
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    font-size: 1.3em;
+    padding: 0 20px;
+}
+
+.navbar{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid black;
     background-color: #0365B7;
     z-index: 1000;
     padding: 0 20px;
     box-sizing: border-box;
+}
+
+.navbar-menu {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar a {
@@ -209,7 +233,7 @@ option{
 
 .main {
     flex: 1;
-    margin-top: 100px; /* Espaço para compensar a navbar fixa */
+    margin-top: 100px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -221,12 +245,13 @@ option{
 .container2 {
     border: 2px solid rgba(255, 255, 255, 0.2);
     background-color: #0365B7;
-    width: 45%; /* Ajusta a largura para caber lado a lado */
+    width: 45%; 
     padding: 30px 40px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgb(0, 0, 0);
-    margin: 10px; /* Espaçamento entre os containers */
+    margin: 10px; 
     color: white;
+    margin-top: 20%;
 }
 
 .container-wrapper {
@@ -234,7 +259,7 @@ option{
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: 20px; /* Espaço entre os containers e o botão */
+    margin-bottom: 20px; 
 }
 
 h2 {
@@ -246,7 +271,8 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; /* Centraliza o botão */
+    margin: 0 auto; 
+    margin-bottom: 5%;
     width: 20%;
     padding: 10px;
     background-color: white;
@@ -262,14 +288,25 @@ h2 {
     background-color: rgb(233, 233, 233);
 }
 
-.main {
-    flex: 1;
-    margin-top: 100px;
-    width: 100%;
+.submit-filter {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
+    margin: 0 auto; 
+    margin-bottom: 5%;
+    width: 20%;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.submit-filter:hover {
+    background-color: rgb(233, 233, 233);
 }
 
 form{
@@ -283,9 +320,17 @@ form{
 }
 
 .half-width {
-    width: 48%; /* Cada campo ocupa metade da largura com um pequeno espaçamento */
+    width: 48%; 
 }
 
 .input-container input {
-    width: 100%; /* Garante que o input ocupe toda a largura do container */
+    width: 100%; 
+}
+
+#update{ 
+    margin: 0 0 3% 29.5%;
+}
+
+#delete{ 
+    margin: 0 29.5% 3% 0;
 }

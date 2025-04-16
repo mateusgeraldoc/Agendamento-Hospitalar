@@ -26,6 +26,7 @@
             header("Location: ../../../index.html");
             exit();
         }
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $cpf = $_POST['cpf'];
             $nome = $_POST['nome'];

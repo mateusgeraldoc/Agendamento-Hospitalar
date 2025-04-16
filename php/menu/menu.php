@@ -31,7 +31,7 @@
                 <p>CADASTRAR PACIENTE</p>
             </div>
         </a>
-        <a href="">
+        <a href="consultar_paciente/consultar_paciente.php">
             <div class="submit-button">
                 <p>CONSULTAR PACIENTE</p>
             </div>

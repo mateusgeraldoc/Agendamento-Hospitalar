@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="navbar">
+    <div class="navbar-menu">
         <a href="../menu.php">
             <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
         </a>
@@ -15,6 +16,7 @@
         <a href="../../index.html">
             <img id="logout-img" title="Logout" src="../../../img/sair.png">
         </a>
+    </div>
     </div>
     <div class="main">
         <form action="insert.php" method="POST">
@@ -58,7 +60,7 @@
             <button class="submit-button" type="submit">CADASTRAR</button>
         </form>
     </div>
-
+    
     <script>
     document.getElementById('cep').addEventListener('blur', function () {
         const cep = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
