@@ -36,7 +36,7 @@
                 <p>CONSULTAR PACIENTE</p>
             </div>
         </a>
-        <a href="">
+        <a href="agendar_consulta/agendar_consulta.php">
             <div class="submit-button">
                 <p>AGENDAR CONSULTA</p>
             </div>

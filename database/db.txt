@@ -26,12 +26,34 @@ CREATE TABLE Pacientes(
 );
 
 CREATE TABLE Especialidade(
-    Cod_paciente INT Primary key auto_increment,
+    Cod_especialidade INT Primary key auto_increment,
     Nome_especialidade VARCHAR(30)
 );
 
-INSERT INTO Usuario
+CREATE TABLE Consulta(
+    Cod_consulta INT Primary key auto_increment,
+    Cod_paciente INT,
+    Cod_especialidade INT,
+    Foreign Key(Cod_paciente) references Pacientes(Cod_paciente),
+    Foreign Key(Cod_especialidade) references Especialidade(Cod_especialidade),
+    Hora TIME,
+    Data DATE
+);
+
+INSERT INTO Usuarios
 VALUES(1, 'User', 'User', 123);
 
 INSERT INTO Acesso
 VALUES (1, '12345');
+
+INSERT INTO Especialidade
+VALUES (1, 'Clinico'),
+(2, 'Demartologista'), 
+(3, 'Cardiologista'),
+(4, 'Pediatra'),
+(5, 'Ortopedista'),
+(6, 'Ginecologista'),
+(7, 'Neurologista'),
+(8, 'Oftalmologista'),
+(9, 'Psiquiatra'),
+(10, 'Endocrinologista');

@@ -33,7 +33,7 @@
                     $sql = mysqli_query($conexao, "SELECT Cpf FROM Pacientes");
                     while ($row = mysqli_fetch_array($sql)) {
                         $cpf = $row['Cpf'];
-                        echo "<option value='$cpf'></option>";
+                        echo "<option value='$cpf'>$cpf</option>";
                     }
                     ?>
                 </datalist>
@@ -123,12 +123,12 @@
                             $sql = mysqli_query($conexao, "SELECT * FROM Pacientes WHERE Cpf='$cpf'");
                             if ($row = mysqli_fetch_array($sql)) {
                                 $cep = $row['Cep'];
-                                echo "<input type='text' name='cep' value='$cep'>";
+                                echo "<input type='text' id='cep' name='cep' value='$cep'>";
                             } else {
-                                echo "<input type='text' placeholder='Cep' name='cep' readonly>";
+                                echo "<input type='text' id='cep' placeholder='Cep' name='cep' readonly>";
                             }
                         } else {
-                            echo "<input type='text' placeholder='Cep' name='cep' readonly>";
+                            echo "<input type='text' id='cep' placeholder='Cep' name='cep' readonly>";
                         }
                         ?>
                     </div>
@@ -140,12 +140,12 @@
                             $sql = mysqli_query($conexao, "SELECT * FROM Pacientes WHERE Cpf='$cpf'");
                             if ($row = mysqli_fetch_array($sql)) {
                                 $rua = $row['Rua'];
-                                echo "<input type='text' name='rua' value='$rua' readonly>";
+                                echo "<input type='text' id='rua' name='rua' value='$rua' readonly>";
                             } else {
-                                echo "<input type='text'placeholder='Rua' name='rua' readonly>";
+                                echo "<input type='text' id='rua' placeholder='Rua' name='rua' readonly>";
                             }
                         } else {
-                            echo "<input type='text' placeholder='Rua' name='rua' readonly>";
+                            echo "<input type='text' id='rua' placeholder='Rua' name='rua' readonly>";
                         }
                         ?>
                         </div>
@@ -156,12 +156,12 @@
                             $sql = mysqli_query($conexao, "SELECT * FROM Pacientes WHERE Cpf='$cpf'");
                             if ($row = mysqli_fetch_array($sql)) {
                                 $numero = $row['Numero'];
-                                echo "<input type='text' name='numero' value='$numero'>";
+                                echo "<input type='text' id='numero' name='numero' value='$numero'>";
                             } else {
-                                echo "<input type='text'placeholder='Numero' name='numero' readonly>";
+                                echo "<input type='text' id='numero' placeholder='Numero' name='numero' readonly>";
                             }
                         } else {
-                            echo "<input type='text' placeholder='Numero' name='numero' readonly>";
+                            echo "<input type='text' id='numero' placeholder='Numero' name='numero' readonly>";
                         }
                         ?>
                         </div>
@@ -173,12 +173,12 @@
                             $sql = mysqli_query($conexao, "SELECT * FROM Pacientes WHERE Cpf='$cpf'");
                             if ($row = mysqli_fetch_array($sql)) {
                                 $bairro = $row['Bairro'];
-                                echo "<input type='text' name='bairro' value='$bairro' readonly>";
+                                echo "<input type='text' id='bairro' name='bairro' value='$bairro' readonly>";
                             } else {
-                                echo "<input type='text' placeholder='Bairro' name='bairro' readonly>";
+                                echo "<input type='text' id='bairro' placeholder='Bairro' name='bairro' readonly>";
                             }
                         } else {
-                            echo "<input type='text' placeholder='Bairro' name='bairro' readonly>";
+                            echo "<input type='text' id='bairro' placeholder='Bairro' name='bairro' readonly>";
                         }
                         ?>
                     </div>
@@ -189,12 +189,12 @@
                             $sql = mysqli_query($conexao, "SELECT * FROM Pacientes WHERE Cpf='$cpf'");
                             if ($row = mysqli_fetch_array($sql)) {
                                 $cidade = $row['Cidade'];
-                                echo "<input type='text' name='cidade' value='$cidade' readonly>";
+                                echo "<input type='text' id='cidade' name='cidade' value='$cidade' readonly>";
                             } else {
-                                echo "<input type='text' placeholder='Cidade' name='cidade' readonly>";
+                                echo "<input type='text' id='cidade' placeholder='Cidade' name='cidade' readonly>";
                             }
                         } else {
-                            echo "<input type='text' placeholder='Cidade' name='cidade' readonly>";
+                            echo "<input type='text' id='cidade' placeholder='Cidade' name='cidade' readonly>";
                         }
                         ?>
                     </div>
@@ -223,7 +223,7 @@
             //Atualiza ou Deleta os dados do paciente dependendo do botão pressionado 
             // 1 = Atualizar, 2 = Deletar
             if ($_POST['submit'] == 1) {
-                $sql = "UPDATE Pacientes SET Cpf='$cpf', Nome='$nome', Idade='$idade', Telefone='$telefone', Cep='$cep', Rua='$rua', Numero='$numero', Bairro='$bairro', Cidade='$cidade' WHERE Cpf='$cpf'";
+                $sql = "UPDATE Pacientes SET Nome='$nome', Idade='$idade', Telefone='$telefone', Cep='$cep', Rua='$rua', Numero='$numero', Bairro='$bairro', Cidade='$cidade' WHERE Cpf='$cpf'";
                 mysqli_query($conexao, $sql);
                 echo "<script>alert('Paciente atualizado com sucesso!');</script>";
             } elseif ($_POST['submit'] == 2) {
@@ -233,5 +233,38 @@
             }
         }
     ?>
+
+<script>
+    document.getElementById('cep').addEventListener('blur', function () {
+        const cep = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        if (cep.length === 8) { // Verifica se o CEP tem 8 dígitos
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na consulta do CEP');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('rua').value = data.logradouro || '';
+                        document.getElementById('bairro').value = data.bairro || '';
+                        document.getElementById('cidade').value = data.localidade || '';
+                    } else {
+                        alert('CEP não encontrado.');
+                        document.getElementById('rua').value = '';
+                        document.getElementById('bairro').value = '';
+                        document.getElementById('cidade').value = '';
+                    }
+                })
+                .catch(() => alert('Erro ao buscar o CEP.'));
+        } else {
+            alert('CEP inválido.');
+            document.getElementById('rua').value = '';
+            document.getElementById('bairro').value = '';
+            document.getElementById('cidade').value = '';
+        }
+    });
+</script>
 </body>
 </html>
