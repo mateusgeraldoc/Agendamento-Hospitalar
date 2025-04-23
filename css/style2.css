@@ -233,10 +233,9 @@ option{
 
 .main {
     flex: 1;
-    margin-top: 100px;
     width: 100%;
     box-sizing: border-box;
-    margin: 180px auto;
+    margin: 200px auto auto auto;
 }
 
 .container2 {
@@ -248,7 +247,6 @@ option{
     box-shadow: 2px 2px 5px rgb(0, 0, 0);
     margin: 10px; 
     color: white;
-    margin-top: 20%;
 }
 
 .container-wrapper {

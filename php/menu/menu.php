@@ -41,7 +41,7 @@
                 <p>AGENDAR CONSULTA</p>
             </div>
         </a>
-        <a href="">
+        <a href="relatorios/relatorios.php">
             <div class="submit-button">
                 <p>RELATORIOS</p>
             </div>
