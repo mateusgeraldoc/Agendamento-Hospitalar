@@ -9,31 +9,26 @@
         body {
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: flex-start; /* Alinha ao topo */
+            justify-content: flex-start; /* Alinha ao topo */
+            padding-left: 2.5%; /* Ajusta para compensar a largura da tabela */
+            height: 100vh;
         }
 
         table {
-            width: 95%;
+            width: 97.4%;
             border-collapse: collapse;
-            margin: 0 auto;
+            margin: 0; /* Remove margem superior */
         }
 
-        th, td {
+        td {
             border-bottom: 1px solid black;
             padding: 10px;
             text-align: center;
-        }
-
-        td{
-            background-color:rgb(228, 228, 228);
+            background-color: rgb(228, 228, 228);
             font-size: 1.2em;
-        }
-        th {
-            background-color: #0365B7;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            font-size: 1.5em;
         }
 
         td:nth-child(4), td:nth-child(5) {
@@ -84,17 +79,7 @@ $sql = mysqli_query($conexao, "SELECT * FROM Consulta
     ORDER BY Data, Hora");
 
 if (mysqli_num_rows($sql) > 0) {
-    echo "<form action='' method='POST'>";
     echo "<table>";
-    echo "<tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Especialidade</th>
-            <th>Data</th>
-            <th>Hora</th>
-            <th>Excluir</th>
-        </tr>";
-
     while ($row = mysqli_fetch_array($sql)) {
         $cod_consulta = $row['Cod_consulta'];
         $nome = $row['Nome'];

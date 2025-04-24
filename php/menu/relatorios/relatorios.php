@@ -6,26 +6,23 @@
     <link rel="stylesheet" href="../../../css/style2.css">
     <title>Hospital</title>
     <style>
+        /*style navbar*/ 
         .navbar { height: 150px; }
         .submit-filter { width: 5%; margin-right: 29%; height: 100%; }
         .input-search input { width: 30%; margin-left: 35%; }
-        .iframe {
-            width: 100%;
-            height: calc(100vh - 200px); /* Altura total menos a altura do navbar */
-            display: flex;
-            justify-content: center;
-            align-items: start;
-            margin-top: 5%;
-            overflow-y: auto;
-        }
-        iframe {
-            width: 100%;
-            height: 135%;
-            border: none; 
-            margin-bottom: 100px;
-        }
-        table{width: 100%; border-collapse: collapse; margin: auto;}
-        th, td {border: 1px solid black; padding: 10px; text-align: center;}
+        
+        /*style cabeçalho da tabela*/ 
+        #cpf2{padding: 0 60px}
+        #data{padding: 0 25px; padding-right: 50px}
+        #hora{padding: 0 30px; padding-left: 20px}
+        #excluir{padding: 0 25px}
+        table{width: 95%; border-collapse: collapse; margin: 0 auto;}
+        th {border: 1px solid black; padding: 10px; text-align: center; background-color: #0365B7;color: white; font-size: 1.5em;}
+        
+        /*style iframe*/ 
+        .table{display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; height: 100%;}
+        .iframe { width: 100%; height: calc(100vh - 280px); display: flex; justify-content: center; align-items: start; overflow-y: auto;}
+        iframe {width: 100%; height: 135%; border: none;}
     </style>
 </head>
 <body> 
@@ -59,10 +56,22 @@
         </div>
     </div>
     <div class="main">
-        <div class="iframe">
-            <iframe src="relatorios_iframe.php"></iframe>
+        <div class="table">
+        <form action='' method='POST'>
+        <table>
+            <tr>
+            <th id="nome">Nome</th>
+            <th id="cpf2">CPF</th>
+            <th id="especialidade">Especialidade</th>
+            <th id="data">Data</th>
+            <th id="hora">Hora</th>
+            <th id="excluir">Excluir</th>
+            </tr>
+        </table>
+            <div class="iframe">
+                <iframe src="relatorios_iframe.php"></iframe>
+            </div>
         </div>
     </div>
-    <div class="footer"></div>
 </body>
 </html>
