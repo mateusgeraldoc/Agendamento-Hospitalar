@@ -15,14 +15,14 @@
             display: flex;
             justify-content: center;
             align-items: start;
-            margin-top: 160px;
+            margin-top: 5%;
             overflow-y: auto;
         }
-
         iframe {
             width: 100%;
             height: 135%;
-            border: none;
+            border: none; 
+            margin-bottom: 100px;
         }
         table{width: 100%; border-collapse: collapse; margin: auto;}
         th, td {border: 1px solid black; padding: 10px; text-align: center;}
@@ -35,9 +35,7 @@
                 <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
             </a>
             <h1>DADOS DA CONSULTA</h1>
-            <a href="../../index.html">
-                <img id="logout-img" title="Logout" src="../../../img/sair.png">
-            </a>
+            <div class="space"></div>
         </div>
         <div class="input-search"> <!-- Campo de pesquisa para o CPF do paciente -->
             <form style="display:flex; flex-direction:row" action="" method="POST">
@@ -65,5 +63,6 @@
             <iframe src="relatorios_iframe.php"></iframe>
         </div>
     </div>
+    <div class="footer"></div>
 </body>
 </html>

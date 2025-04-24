@@ -24,7 +24,7 @@
     <div class="container">
     <div class="menu">
         <h1>MENU</h1>
-        <a href="../../index.html"><img id="logout-img" title="Logout" src="../../img/sair.png"></a>
+        <a href="../login/logout.php"><img id="logout-img" title="Logout" src="../../img/sair.png"></a>
     </div>
         <a href="cadastrar_paciente/cadastrar_paciente.php">
             <div class="submit-button">
@@ -47,5 +47,6 @@
             </div>
         </a>
     </div>
+
 </body>
 </html>

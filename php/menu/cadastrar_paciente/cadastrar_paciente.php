@@ -13,9 +13,7 @@
             <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
         </a>
         <h1>CADASTRO PACIENTE</h1>
-        <a href="../../index.html">
-            <img id="logout-img" title="Logout" src="../../../img/sair.png">
-        </a>
+        <div class="space"></div>
     </div>
     </div>
     <div class="main">

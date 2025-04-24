@@ -9,6 +9,7 @@
         .navbar { height: 150px; }
         .submit-filter { width: 5%; margin-right: 29%; height: 100%; }
         .input-search input { width: 30%; margin-left: 35%; }
+        .container2{margin-top: 5%;}
     </style>
 </head>
 <body> 
@@ -18,9 +19,7 @@
                 <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
             </a>
             <h1>DADOS DO PACIENTE</h1>
-            <a href="../../index.html">
-                <img id="logout-img" title="Logout" src="../../../img/sair.png">
-            </a>
+            <div class="space"></div>
         </div>
         <div class="input-search"> <!-- Campo de pesquisa para o CPF do paciente -->
             <form style="display:flex; flex-direction:row" action="" method="POST">
