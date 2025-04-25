@@ -58,27 +58,49 @@
 session_start();
 include_once("../../conexao.php");
 
-// Verifica se o botão de exclusão foi clicado
 if (isset($_POST['submit'])) {
     $cod_consulta = $_POST['cod_consulta'];
+    echo "<script>
+        if (confirm('Deseja realmente cancelar a consulta?')) {
+            window.location.href = 'relatorios_iframe.php?delete=' + $cod_consulta;
+        }
+    </script>";
+}
+
+if (isset($_GET['delete'])) {
+    $cod_consulta = $_GET['delete'];
     $sql = mysqli_query($conexao, "DELETE FROM Consulta WHERE Cod_consulta='$cod_consulta'");
 
     if ($sql) {
-        echo "header('Location: relatorios_iframe.php');
-        exit();";
-        echo "<script>alert('Consulta cancelada com sucesso!');</script>";
+        echo "<script>
+            alert('Consulta cancelada com sucesso!');
+            window.location.href = 'relatorios_iframe.php';
+        </script>";
     } else {
-        echo "<script>alert('Erro ao cancelar a consulta.');</script>";
+        echo "<script>
+            alert('A consulta Não foi cancelada.');
+        </script>";
     }
 }
+    
 
 // Consulta para exibir os dados
+
+if (isset($_POST['cpf'])) {
+    $cpf = $_POST['cpf'];
+    $sql = mysqli_query($conexao, "SELECT * FROM Consulta 
+        INNER JOIN Pacientes ON Consulta.Cod_paciente = Pacientes.Cod_paciente 
+        INNER JOIN Especialidade ON Consulta.Cod_especialidade = Especialidade.Cod_especialidade 
+        WHERE Cpf='$cpf' 
+        ORDER BY Data, Hora");
+} else {
 $sql = mysqli_query($conexao, "SELECT * FROM Consulta 
     INNER JOIN Pacientes ON Consulta.Cod_paciente = Pacientes.Cod_paciente 
     INNER JOIN Especialidade ON Consulta.Cod_especialidade = Especialidade.Cod_especialidade 
     ORDER BY Data, Hora");
-
+}
 if (mysqli_num_rows($sql) > 0) {
+    echo "<form action='' method='POST'>";
     echo "<table>";
     while ($row = mysqli_fetch_array($sql)) {
         $cod_consulta = $row['Cod_consulta'];
@@ -87,7 +109,6 @@ if (mysqli_num_rows($sql) > 0) {
         $especialidade = $row['Nome_especialidade'];
         $data = $row['Data'];
         $hora = $row['Hora'];
-        echo "<input type='hidden' name='cod_consulta' value='$cod_consulta'>";
         echo "<tr>
                 <td>$nome</td>
                 <td>$cpf</td>
@@ -95,14 +116,17 @@ if (mysqli_num_rows($sql) > 0) {
                 <td>$data</td>
                 <td>$hora</td>
                 <td>
-                    <button class='submit-button' name='submit' type='submit' value='$cod_consulta'>CANCELAR</button>
+                    <form action='' method='POST'>
+                        <input type='hidden' name='cod_consulta' value='$cod_consulta'>
+                        <button class='submit-button' name='submit' type='submit'>CANCELAR</button>
+                    </form>
                 </td>
               </tr>";
     }
     echo "</table>";
     echo "</form>";
 } else {
-    echo "<p style='text-align: center;'>Nenhuma consulta encontrada.</p>";
+    echo "<p style='padding: 5% 38%; font-size: 1.2em;'>Nenhuma consulta foi encontrada.</p>";
 }
 ?>
 </body>

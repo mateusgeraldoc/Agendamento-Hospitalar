@@ -35,7 +35,7 @@
             <div class="space"></div>
         </div>
         <div class="input-search"> <!-- Campo de pesquisa para o CPF do paciente -->
-            <form style="display:flex; flex-direction:row" action="" method="POST">
+            <form style="display:flex; flex-direction:row" action="relatorios_iframe.php" method="POST">
                 <input list="cpf" id="cpf" name="cpf" placeholder="Digite o CPF" required>
                 <datalist id="cpf">
                     <?php
@@ -53,11 +53,11 @@
                     <img src="../../../img/filtrar.png">
                 </button>
             </form>
+            
         </div>
     </div>
     <div class="main">
         <div class="table">
-        <form action='' method='POST'>
         <table>
             <tr>
             <th id="nome">Nome</th>
