@@ -1,23 +1,40 @@
 <?php
-session_start(); 
-include_once("../conexao.php");
+// login.php
+require_once("../conexao.php");
 
-if ($_SERVER['REQUEST_METHOD']=='POST'){
+// Configurações de sessão segura
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1); // Use apenas se estiver com HTTPS
+ini_set('session.use_strict_mode', 1);
+
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    $consulta = mysqli_query($conexao, "SELECT * FROM Usuarios WHERE Usuario = '$usuario' AND Senha = '$senha'") or die(mysqli_error($conexao));
+    $stmt = $conexao->prepare("SELECT * FROM Usuarios WHERE Usuario = ? AND Senha = ?");
+    $stmt->bind_param("ss", $usuario, $senha);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    $resultado = mysqli_fetch_array($consulta);
-        if($resultado){
-            $_SESSION['nome'] = $resultado['Nome_usuario'];
-            $_SESSION['usuario'] = $usuario;
-            $_SESSION['senha'] = $senha;
-            header("Location: ../menu/menu.php");
-            exit();
-        } else {
-            header("Location: ../../index.html");
-            exit();
-        }
+    if ($resultado->num_rows > 0) {
+        $dados = $resultado->fetch_assoc();
+        
+        // Regenera o ID da sessão para prevenir fixation
+        session_regenerate_id(true);
+        
+        $_SESSION['nome'] = $dados['Nome_usuario'];
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['user_agent'] = md5($_SERVER['HTTP_USER_AGENT']);
+        $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+        $_SESSION['created'] = time();
+        
+        header("Location: ../menu/menu.php");
+        exit();
+    } else {
+        header("Location: ../../index.html?erro=login_invalido");
+        exit();
     }
+}
 ?>

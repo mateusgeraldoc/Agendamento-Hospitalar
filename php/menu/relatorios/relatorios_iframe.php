@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/session.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,9 +58,7 @@
     </style>
 </head>
 <body>
-<?php
-session_start();
-include_once("../../conexao.php");
+    <?php
 
 if (isset($_POST['submit'])) {
     $cod_consulta = $_POST['cod_consulta'];
@@ -86,7 +88,7 @@ if (isset($_GET['delete'])) {
 
 // Consulta para exibir os dados
 
-if (isset($_POST['cpf'])) {
+if (isset($_POST['cpf']) && !empty($_POST['cpf'])) {
     $cpf = $_POST['cpf'];
     $sql = mysqli_query($conexao, "SELECT * FROM Consulta 
         INNER JOIN Pacientes ON Consulta.Cod_paciente = Pacientes.Cod_paciente 
@@ -94,11 +96,12 @@ if (isset($_POST['cpf'])) {
         WHERE Cpf='$cpf' 
         ORDER BY Data, Hora");
 } else {
-$sql = mysqli_query($conexao, "SELECT * FROM Consulta 
-    INNER JOIN Pacientes ON Consulta.Cod_paciente = Pacientes.Cod_paciente 
-    INNER JOIN Especialidade ON Consulta.Cod_especialidade = Especialidade.Cod_especialidade 
-    ORDER BY Data, Hora");
+    $sql = mysqli_query($conexao, "SELECT * FROM Consulta 
+        INNER JOIN Pacientes ON Consulta.Cod_paciente = Pacientes.Cod_paciente 
+        INNER JOIN Especialidade ON Consulta.Cod_especialidade = Especialidade.Cod_especialidade 
+        ORDER BY Data, Hora");
 }
+
 if (mysqli_num_rows($sql) > 0) {
     echo "<form action='' method='POST'>";
     echo "<table>";
@@ -129,5 +132,10 @@ if (mysqli_num_rows($sql) > 0) {
     echo "<p style='padding: 5% 38%; font-size: 1.2em;'>Nenhuma consulta foi encontrada.</p>";
 }
 ?>
+<script>
+if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
+    window.location.href = "../../login/logout.php";
+}
+</script>
 </body>
 </html>

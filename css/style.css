@@ -156,6 +156,7 @@ option{
 .submit-button:hover{
     cursor: pointer;
     background-color: rgb(233, 233, 233);
+    font-size: 1.1em;
 }
 
 .input-container select{

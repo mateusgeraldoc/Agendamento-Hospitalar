@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/session.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +17,6 @@
     </style>
 </head>
 <body>
-    <?php 
-    session_start();
-    include_once("../conexao.php");
-    if (!isset($_SESSION['usuario'])) {
-        header("Location: ../../index.html");
-        exit();
-    }
-    ?>
     <div class="container">
     <div class="menu">
         <h1>MENU</h1>
@@ -47,6 +43,10 @@
             </div>
         </a>
     </div>
-
+    <script>
+if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
+    window.location.href = "../../login/logout.php";
+}
+</script>
 </body>
 </html>

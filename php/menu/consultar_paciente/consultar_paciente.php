@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/session.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
         .container2{margin-top: 5%;}
     </style>
 </head>
-<body> 
+<body>
     <div class="navbar"> <!-- Navbar com o campo de pesquisa de CPF, botão de voltar e logout -->
         <div class="navbar-menu">
             <a href="../menu.php">
@@ -26,9 +30,6 @@
                 <input list="cpf" id="cpf" name="cpf" placeholder="Digite o CPF" required>
                 <datalist id="cpf">
                     <?php
-                    session_start();
-                    include_once("../../conexao.php");
-
                     $sql = mysqli_query($conexao, "SELECT Cpf FROM Pacientes");
                     while ($row = mysqli_fetch_array($sql)) {
                         $cpf = $row['Cpf'];
@@ -114,7 +115,7 @@
                     </div>
                 </div>
                 <div class="container2">
-                    <h2>DADOS ENDEREÇO</h2>
+                    <h2>DADOS ENDERECO</h2>
                     <div class="input-container">   <!-- Input de CEP -->
                     <?php
                         if (isset($_POST['cpf'])) {
@@ -264,6 +265,11 @@
             document.getElementById('cidade').value = '';
         }
     });
+</script>
+<script>
+if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
+    window.location.href = "../../login/logout.php";
+}
 </script>
 </body>
 </html>

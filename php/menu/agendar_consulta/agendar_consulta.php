@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/session.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +13,17 @@
         .navbar { height: 150px; }
         .submit-filter { width: 5%; margin-right: 29%; height: 100%; }
         .input-search input { width: 30%; margin-left: 35%; }
-        .container2{text-align: center; margin: auto;}
+        .container2{text-align: center; margin: auto auto 50px auto;}
         .submit-button{width: 100%;}
     </style>
 </head>
-<body> 
+<body>
     <div class="navbar"> <!-- Navbar com o campo de pesquisa de CPF, botão de voltar e logout -->
         <div class="navbar-menu">
             <a href="../menu.php">
                 <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
             </a>
-            <h1>DADOS DA CONSULTA</h1>
+            <h1>AGENDAMENTO</h1>
             <div class="space"></div>
         </div>
         <div class="input-search"> <!-- Campo de pesquisa para o CPF do paciente -->
@@ -27,9 +31,6 @@
                 <input list="cpf" id="cpf" name="cpf" placeholder="Digite o CPF" required>
                 <datalist id="cpf">
                     <?php
-                    session_start();
-                    include_once("../../conexao.php");
-
                     $sql = mysqli_query($conexao, "SELECT Cpf FROM Pacientes");
                     while ($row = mysqli_fetch_array($sql)) {
                         $cpf = $row['Cpf'];
@@ -46,7 +47,7 @@
     <div class="main">
         <form action="insert.php" method="POST">
                 <div style="height: 525px;" class="container2">
-                    <h2>DADOS PACIENTE</h2>
+                    <h2>DADOS DA CONSULTA</h2>
                     <!-- Cada input recebe os dados do paciente com base no CPF -->
                     <!-- Input de CPF -->
                     <div class="input-container">
@@ -110,5 +111,10 @@
             </div>
         </form>
     </div>
+    <script>
+if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
+    window.location.href = "../../login/logout.php";
+}
+</script>
 </body>
 </html>

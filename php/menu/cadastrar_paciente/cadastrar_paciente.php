@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/session.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
         <a href="../menu.php">
             <img id="logout-img" title="Voltar" src="../../../img/seta-voltar.png">
         </a>
-        <h1>CADASTRO PACIENTE</h1>
+        <h1>CADASTRO DE PACIENTE</h1>
         <div class="space"></div>
     </div>
     </div>
@@ -90,6 +94,11 @@
             document.getElementById('cidade').value = '';
         }
     });
+</script>
+<script>
+if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
+    window.location.href = "../../login/logout.php";
+}
 </script>
 </body>
 </html>
