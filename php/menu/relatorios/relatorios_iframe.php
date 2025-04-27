@@ -112,25 +112,47 @@ if (mysqli_num_rows($sql) > 0) {
         $especialidade = $row['Nome_especialidade'];
         $data = $row['Data'];
         $hora = $row['Hora'];
+        $data_formatada = date("d/m/Y", strtotime($data));
+        $hora_formatada = date("H:i", strtotime($hora));
+        
+        // Verifica a situação com base na data e hora atuais separadamente
+        $data_consulta = strtotime($data);
+        $hora_consulta = strtotime($hora);
+        $data_atual = strtotime(date("Y-m-d"));
+        $hora_atual = strtotime(date("H:i"));
+
+        if ($data_consulta < $data_atual) {
+            $situacao = "Pendente";
+        } elseif ($data_consulta == $data_atual) {
+            if ($hora_consulta > $hora_atual) {
+                $situacao = "Atual";
+            } else {
+                $situacao = "Pendente";
+            }
+        } else {
+            $situacao = "Agendado";
+        }
+
         echo "<tr>
-                <td>$nome</td>
-                <td>$cpf</td>
-                <td>$especialidade</td>
-                <td>$data</td>
-                <td>$hora</td>
-                <td>
-                    <form action='' method='POST'>
-                        <input type='hidden' name='cod_consulta' value='$cod_consulta'>
-                        <button class='submit-button' name='submit' type='submit'>CANCELAR</button>
-                    </form>
-                </td>
+            <td>$nome</td>
+            <td>$cpf</td>
+            <td>$especialidade</td>
+            <td>$data_formatada</td>
+            <td>$hora_formatada</td>
+            <td>$situacao</td>
+            <td>
+            <form action='' method='POST'>
+            <input type='hidden' name='cod_consulta' value='$cod_consulta'>
+            <button class='submit-button' name='submit' type='submit'>CANCELAR</button>
+            </form>
+            </td>
               </tr>";
+        }
+        echo "</table>";
+        echo "</form>";
+    } else {
+        echo "<p style='padding: 5% 38%; font-size: 1.2em;'>Nenhuma consulta foi encontrada.</p>";
     }
-    echo "</table>";
-    echo "</form>";
-} else {
-    echo "<p style='padding: 5% 38%; font-size: 1.2em;'>Nenhuma consulta foi encontrada.</p>";
-}
 ?>
 <script>
 if(!<?php echo isset($_SESSION['usuario']) ? 'true' : 'false'; ?>) {
