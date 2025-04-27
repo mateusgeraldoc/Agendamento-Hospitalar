@@ -16,10 +16,12 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
         .input-search input { width: 30%; margin-left: 35%; }
         
         /*style cabeçalho da tabela*/ 
-        #cpf2{padding: 0 60px}
-        #data{padding: 0 25px; padding-right: 50px}
-        #hora{padding: 0 30px; padding-left: 20px}
-        #excluir{padding: 0 25px}
+        #nome{padding-right: 30px}
+        #cpf2{padding: 0 70px}
+        #especialidade{padding: 0 40px; }
+        #data{padding: 0 40px; padding-right: 40px}
+        #hora{padding: 0 30px;}
+        #excluir{padding: 0 35px}
         table{width: 95%; border-collapse: collapse; margin: 0 auto;}
         th {border: 1px solid black; padding: 10px; text-align: center; background-color: #0365B7;color: white; font-size: 1.5em;}
         
@@ -27,6 +29,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
         .table{display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; height: 100%;}
         .iframe { width: 100%; height: calc(100vh - 280px); display: flex; justify-content: center; align-items: start; overflow-y: auto;}
         iframe {width: 100%; height: 135%; border: none;}
+        .submit-button:hover {font-size: 1em;}
     </style>
 </head>
 <body> 
@@ -69,6 +72,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
             <th id="especialidade">Especialidade</th>
             <th id="data">Data</th>
             <th id="hora">Hora</th>
+            <th id="situaçao">Situacao</th>
             <th id="excluir">Excluir</th>
             </tr>
         </table>
