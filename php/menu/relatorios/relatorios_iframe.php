@@ -54,6 +54,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/Crud/php/conexao.php');
             background-color: #0365B7;
             color: white;
             cursor: pointer;
+            font-size: 1em;
         }
     </style>
 </head>
