@@ -1,11 +1,10 @@
 # Projeto de Cadastro de pacientes - CRUD
 
-Este projeto tem como objetivo criar uma aplicação simples de CRUD (Create, Read, Update, Delete) para o cadastro de pacientes e agendamento de consultas de um hospital. O sistema permite registrar, visualizar, editar e excluir dados dos pacientes, além de permitir ao colaborador ver todo o historico de consultas que estão agendadas ou que foram canceladas.
+Este projeto tem como objetivo criar uma aplicação simples de CRUD (Create, Read, Update, Delete) para o cadastro de pacientes e agendamento de consultas de um hospital. O sistema permite registrar, visualizar, editar e excluir dados dos pacientes, além de permitir ao colaborador ver todo o histórico de consultas que estão agendadas ou que foram canceladas.
 
 ## Requisitos
 
 ### Para rodar o projeto, você precisa ter o seguinte instalado em seu computador:
-
 
 ```bash
     - XAMPP Server (Windows Apache MySQL PHP)
@@ -35,10 +34,17 @@ Baixe o XAMPP [AQUI](https://www.apachefriends.org/pt_br/download.html).
 ```bash
     Acesse o phpMyAdmin no seu navegador através do link: http://localhost/phpmyadmin/
     Crie um novo banco de dados chamado hospital.
-    Selecione o banco de dados que você criou
-    Crie as tabelas que estão dentro da pasta database, no arquivo db.txt.
+    Selecione o banco de dados que você criou.
+```
+#### Importando o arquivo SQL:
+```bash
+    No phpMyAdmin, clique no banco de dados "hospital" que você criou.
+    Vá até a aba "Importar".
+    Clique no botão "Escolher arquivo" e selecione o arquivo hospital.sql que está na pasta database do projeto.
+    Clique em "Executar" para importar as tabelas e os dados necessários.
+```
+```bash
     Insira dentro do banco de dados toda a linha do comando insert no arquivo db.txt, logo abaixo dos comandos de create table.
-    Importe o arquivo SQL que acompanha o projeto para criar as tabelas necessárias.
 ```
 ### Configure o arquivo de conexão com o banco:
 ```bash
@@ -56,7 +62,6 @@ Baixe o XAMPP [AQUI](https://www.apachefriends.org/pt_br/download.html).
     Acesse a aplicação:
         No seu navegador, acesse a aplicação no seguinte link: http://localhost/agendamento-hospitalar-crud.
 ```
-
 
 ## Funcionalidades
 ```bash
